@@ -3,12 +3,13 @@ package hexlet.code;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeSet;
+import java.util.SortedSet;
 
 public class Differ {
 
@@ -22,17 +23,17 @@ public class Differ {
             js1 = Files.readString(Paths.get(firstFilePath));
             js2 = Files.readString(Paths.get(secondFilePath));
         } else {
-            js1 = Files.readString(Paths.get("/home/konstantin/study" +
-                    "/Hexlet_projects/java-project-71/app/src/main/resources/",firstFilePath));
-            js2 = Files.readString(Paths.get("/home/konstantin/study" +
-                    "/Hexlet_projects/java-project-71/app/src/main/resources/", secondFilePath));
+            js1 = Files.readString(Paths.get("/home/konstantin/study"
+                    + "/Hexlet_projects/java-project-71/app/src/main/resources/", firstFilePath));
+            js2 = Files.readString(Paths.get("/home/konstantin/study"
+                    + "/Hexlet_projects/java-project-71/app/src/main/resources/", secondFilePath));
         }
 //        File firstFile = new File(firstFilePath);
 //        File secondFile = new File(secondFilePath);
 
         //Создаем Map из переданных JSON
         Map<String, Object> firstJSONFile = objectMapper.readValue(js1, Map.class);
-        Map<String, Object> secondJSONFile = objectMapper.readValue(js2, new TypeReference<Map<String,Object>>(){});
+        Map<String, Object> secondJSONFile = objectMapper.readValue(js2, new TypeReference<Map<String, Object>>() { });
         SortedSet<String> allKeys = new TreeSet<>(firstJSONFile.keySet());
         allKeys.addAll(secondJSONFile.keySet());
         LinkedList<String> resultList = new LinkedList<>();

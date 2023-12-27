@@ -3,6 +3,7 @@ plugins {
     id("checkstyle")
     application
     checkstyle
+    jacoco
 }
 
 group = "hexlet.code"
@@ -40,4 +41,15 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.9"
+}
+tasks.jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
 }
