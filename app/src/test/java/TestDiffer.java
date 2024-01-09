@@ -17,9 +17,6 @@ public class TestDiffer {
                 + " + timeout: 20\n"
                 + " + verbose: true\n"
                 + "}";
-        assertEquals(resultJson, Differ.generate(
-                "/home/konstantin/study/Hexlet_projects/java-project-71/app/src/test/resources/file1.json",
-                "/home/konstantin/study/Hexlet_projects/java-project-71/app/src/test/resources/file2.json"));
         assertEquals(resultJson, Differ.generate("file1.json", "file2.json"));
     }
 }
