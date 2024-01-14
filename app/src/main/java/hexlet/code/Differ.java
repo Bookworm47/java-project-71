@@ -3,8 +3,10 @@ package hexlet.code;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+//import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Map;
@@ -16,18 +18,23 @@ public class Differ {
     public static String generate(String firstFilePath, String secondFilePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         String result;
-        String js1;
-        String js2;
-        //Создаем объект файл из JSON по переданному пути
-        if (Paths.get(firstFilePath).toFile().exists()) {
-            js1 = Files.readString(Paths.get(firstFilePath));
-            js2 = Files.readString(Paths.get(secondFilePath));
-        } else {
-            js1 = Files.readString(Paths.get("/home/konstantin/study"
-                    + "/Hexlet_projects/java-project-71/app/src/main/resources/", firstFilePath));
-            js2 = Files.readString(Paths.get("/home/konstantin/study"
-                    + "/Hexlet_projects/java-project-71/app/src/main/resources/", secondFilePath));
-        }
+        Path path1 = Paths.get(firstFilePath).toAbsolutePath().normalize();
+        Path path2 = Paths.get(secondFilePath).toAbsolutePath().normalize();
+        String js1 = Files.readString(path1);
+        String js2 = Files.readString(path2);
+
+//        String js1;
+//        String js2;
+//        //Создаем объект файл из JSON по переданному пути
+//        if (Paths.get(firstFilePath).toFile().exists()) {
+//            js1 = Files.readString(Paths.get(firstFilePath));
+//            js2 = Files.readString(Paths.get(secondFilePath));
+//        } else {
+//            js1 = Files.readString(Paths.get("/home/konstantin/study"
+//                    + "/Hexlet_projects/java-project-71/app/src/main/resources/", firstFilePath));
+//            js2 = Files.readString(Paths.get("/home/konstantin/study"
+//                    + "/Hexlet_projects/java-project-71/app/src/main/resources/", secondFilePath));
+//        }
 //        File firstFile = new File(firstFilePath);
 //        File secondFile = new File(secondFilePath);
 

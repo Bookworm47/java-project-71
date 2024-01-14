@@ -4,9 +4,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class TestDiffer {
 
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", "fixtures", fileName)
+                .toAbsolutePath().normalize();
+    }
     @Test
     void differTest() throws IOException {
         String resultJson = "{\n"
@@ -17,8 +23,8 @@ public class TestDiffer {
                 + " + timeout: 20\n"
                 + " + verbose: true\n"
                 + "}";
-        String filepath1 = "/home/konstantin/study/Hexlet_projects/java-project-71/app/src/test/resources/file1.json";
-        String filepath2 = "/home/konstantin/study/Hexlet_projects/java-project-71/app/src/test/resources/file2.json";
+        String filepath1 = getFixturePath("file1.json").toString();
+        String filepath2 = getFixturePath("file2.json").toString();
         assertEquals(resultJson, Differ.generate(filepath1, filepath2));
     }
 }
