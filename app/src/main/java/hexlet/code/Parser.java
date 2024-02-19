@@ -13,7 +13,6 @@ public class Parser {
     public static Map<String, Object> parser(String filePath) throws IOException, NullPointerException {
         ObjectMapper objectMapper = null;
         Path path = Paths.get(filePath).toAbsolutePath().normalize();
-        System.out.println(path.toString());
         String fileResult = Files.readString(path);
 
         if (filePath.endsWith(".json")) {

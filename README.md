@@ -5,4 +5,8 @@
 
 [![asciicast](https://asciinema.org/a/627215.svg)](https://asciinema.org/a/627215)
 
+Diff YAML
 [![asciicast](https://asciinema.org/a/637293.svg)](https://asciinema.org/a/637293)
+
+Nested Diff
+[![asciicast](https://asciinema.org/a/yHBAcR08JXyXumaV1KA3WTdSY.svg)](https://asciinema.org/a/yHBAcR08JXyXumaV1KA3WTdSY)

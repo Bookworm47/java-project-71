@@ -5,6 +5,8 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 
@@ -14,8 +16,8 @@ import java.util.concurrent.Callable;
 
 public class App implements Callable {
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-//            defaultValue = "stylish")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish",
+            description = "output format [default: ${DEFAULT-VALUE}]")
     private String format;
 
     @Parameters(paramLabel = "filepath1", defaultValue = "Hello, picocli",
@@ -29,8 +31,8 @@ public class App implements Callable {
 
     @Override
     public Integer call() throws Exception {
-        String result = Differ.generate(filepath1, filepath2);
-        System.out.println(result);
+        Map<String, List<Object>> resultDiffMap = Differ.generate(filepath1, filepath2);
+        System.out.println(StylishFormatter.stylish(resultDiffMap));
         return 0;
     }
 
