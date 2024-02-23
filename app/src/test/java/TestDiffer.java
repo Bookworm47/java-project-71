@@ -1,5 +1,4 @@
 import hexlet.code.Differ;
-import hexlet.code.StylishFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,23 +9,28 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TestDiffer {
-    String resultJson;
-    String resultJson2;
+    String result1;
+    String result2;
     private static Path getFixturePath(String fileName) {
         return Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();
     }
     @BeforeEach
     void createResultJson() {
-        resultJson = "{\n"
-                + " - follow: false\n"
-                + "   host: hexlet.io\n"
-                + " - proxy: 123.234.53.22\n"
-                + " - timeout: 50\n"
-                + " + timeout: 20\n"
-                + " + verbose: true\n"
-                + "}";
-        resultJson2 = "{\n"
+        result1 = "Property 'chars2' was updated. From [complex value] to false\n"
+                + "Property 'checked' was updated. From false to true\n"
+                + "Property 'default' was updated. From null to [complex value]\n"
+                + "Property 'id' was updated. From 45 to null\n"
+                + "Property 'key1' was removed\n"
+                + "Property 'key2' was added with value: 'value2'\n"
+                + "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
+                + "Property 'numbers3' was removed\n"
+                + "Property 'numbers4' was added with value: [complex value]\n"
+                + "Property 'obj1' was added with value: [complex value]\n"
+                + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
+                + "Property 'setting2' was updated. From 200 to 300\n"
+                + "Property 'setting3' was updated. From true to 'none'";
+        result2 = "{\n"
                 + "   chars1: [a, b, c]\n"
                 + " - chars2: [d, e, f]\n"
                 + " + chars2: false\n"
@@ -53,21 +57,25 @@ public class TestDiffer {
                 + "}";
     }
     @Test
-    void differTest() throws IOException {
-//        String filepath1 = getFixturePath("file1.json").toString();
-//        String filepath2 = getFixturePath("file2.json").toString();
-//        assertEquals(resultJson, Differ.generate(filepath1, filepath2));
-//
-//        String filepath3 = getFixturePath("file1.yml").toString();
-//        String filepath4 = getFixturePath("file2.yml").toString();
-//        assertEquals(resultJson, Differ.generate(filepath3, filepath4));
+    void stylishTest() throws IOException {
+        String format = "stylish";
+        String filepath1 = getFixturePath("innerFile1.json").toString();
+        String filepath2 = getFixturePath("innerFile2.json").toString();
+        assertEquals(result2, Differ.generate(filepath1, filepath2, format));
 
-        String filepath5 = getFixturePath("innerFile1.json").toString();
-        String filepath6 = getFixturePath("innerFile2.json").toString();
-        assertEquals(resultJson2, StylishFormatter.stylish(Differ.generate(filepath5, filepath6)));
+        String filepath3 = getFixturePath("innerFile1.yaml").toString();
+        String filepath4 = getFixturePath("innerFile2.yaml").toString();
+        assertEquals(result2, Differ.generate(filepath3, filepath4, format));
+    }
 
-        String filepath7 = getFixturePath("innerFile1.yaml").toString();
-        String filepath8 = getFixturePath("innerFile2.yaml").toString();
-        assertEquals(resultJson2, StylishFormatter.stylish(Differ.generate(filepath7, filepath8)));
+    void plainTest() throws IOException {
+        String format = "plain";
+        String filepath1 = getFixturePath("innerFile1.json").toString();
+        String filepath2 = getFixturePath("innerFile2.json").toString();
+        assertEquals(result2, Differ.generate(filepath1, filepath2, format));
+
+        String filepath3 = getFixturePath("innerFile1.yaml").toString();
+        String filepath4 = getFixturePath("innerFile2.yaml").toString();
+        assertEquals(result2, Differ.generate(filepath3, filepath4, format));
     }
 }

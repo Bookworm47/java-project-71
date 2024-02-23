@@ -1,38 +1,43 @@
-package hexlet.code;
+package hexlet.code.formatters;
+
+import hexlet.code.ChangeStatus;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class StylishFormatter {
-    public static String stylish(Map<String, List<Object>> differ) {
+import static hexlet.code.formatters.FormattersSettings.NEWOBJECT;
+import static hexlet.code.formatters.FormattersSettings.OLDOBJECT;
+
+public class Stylish {
+    public static String stylish(List<Map<String, Object>> differ) {
         StringBuilder jsonDifferStylishResult = new StringBuilder();
         String result;
-        Object partOfResultDiff;
         jsonDifferStylishResult.append("{" + "\n");
-        for (Map.Entry<String, List<Object>> diff : differ.entrySet()) {
-            String key = diff.getKey();
-            partOfResultDiff = diff.getValue().get(1);
-            switch ((ChangeStatus) diff.getValue().get(0)) {
+        for (Map<String, Object> diff : differ) {
+            String key = diff.keySet().iterator().next();
+            ChangeStatus diffStatus = (ChangeStatus) diff.get(key);
+            switch (Objects.requireNonNull(diffStatus)) {
                 case SAME:
                     jsonDifferStylishResult.append("   ").append(key).append(": ").
-                            append(partOfResultDiff).append("\n");
+                            append(diff.get(OLDOBJECT)).append("\n");
                     break;
                 case CHANGE:
-                    Object partOfResultDiff2 = diff.getValue().get(2);
                     jsonDifferStylishResult.append(" - ").append(key).append(": ").
-                            append(partOfResultDiff).append("\n");
+                            append(diff.get(OLDOBJECT)).append("\n");
                     jsonDifferStylishResult.append(" + ").append(key).append(": ").
-                            append(partOfResultDiff2).append("\n");
+                            append(diff.get(NEWOBJECT)).append("\n");
                     break;
                 case ADD:
                     jsonDifferStylishResult.append(" + ").append(key).append(": ").
-                            append(partOfResultDiff).append("\n");
+                            append(diff.get(NEWOBJECT)).append("\n");
                     break;
                 case DELETE:
                     jsonDifferStylishResult.append(" - ").append(key).append(": ").
-                            append(partOfResultDiff).append("\n");
+                            append(diff.get(OLDOBJECT)).append("\n");
                     break;
-                default: break;
+                default:
+                    break;
             }
         }
         jsonDifferStylishResult.append("}");
