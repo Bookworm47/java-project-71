@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 public class TestDiffer {
     String result1;
     String result2;
+    String result3;
     private static Path getFixturePath(String fileName) {
         return Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();
@@ -55,6 +56,19 @@ public class TestDiffer {
                 + " - setting3: true\n"
                 + " + setting3: none\n"
                 + "}";
+        result3 = "[{\"chars1\":\"SAME\",\"OldObject\":[\"a\",\"b\",\"c\"]},"
+                + "{\"chars2\":\"CHANGE\",\"OldObject\":[\"d\",\"e\",\"f\"],\"NewObject\":false},"
+                + "{\"checked\":\"CHANGE\",\"OldObject\":false,\"NewObject\":true},"
+                + "{\"default\":\"CHANGE\",\"OldObject\":null,\"NewObject\":[\"value1\",\"value2\"]},"
+                + "{\"id\":\"CHANGE\",\"OldObject\":45,\"NewObject\":null},"
+                + "{\"key1\":\"DELETE\",\"OldObject\":\"value1\"},"
+                + "{\"key2\":\"ADD\",\"NewObject\":\"value2\"},{\"numbers1\":\"SAME\",\"OldObject\":[1,2,3,4]},"
+                + "{\"numbers2\":\"CHANGE\",\"OldObject\":[2,3,4,5],\"NewObject\":[22,33,44,55]},"
+                + "{\"numbers3\":\"DELETE\",\"OldObject\":[3,4,5]},{\"numbers4\":\"ADD\",\"NewObject\":[4,5,6]},"
+                + "{\"obj1\":\"ADD\",\"NewObject\":{\"nestedKey\":\"value\",\"isNested\":true}},"
+                + "{\"setting1\":\"CHANGE\",\"OldObject\":\"Some value\",\"NewObject\":\"Another value\"},"
+                + "{\"setting2\":\"CHANGE\",\"OldObject\":200,\"NewObject\":300},"
+                + "{\"setting3\":\"CHANGE\",\"OldObject\":true,\"NewObject\":\"none\"}]";
     }
     @Test
     void stylishTest() throws IOException {
@@ -77,5 +91,16 @@ public class TestDiffer {
         String filepath3 = getFixturePath("innerFile1.yaml").toString();
         String filepath4 = getFixturePath("innerFile2.yaml").toString();
         assertEquals(result1, Differ.generate(filepath3, filepath4, format));
+    }
+    @Test
+    void jsonTest() throws IOException {
+        String format = "json";
+        String filepath1 = getFixturePath("innerFile1.json").toString();
+        String filepath2 = getFixturePath("innerFile2.json").toString();
+        assertEquals(result3, Differ.generate(filepath1, filepath2, format));
+
+        String filepath3 = getFixturePath("innerFile1.yaml").toString();
+        String filepath4 = getFixturePath("innerFile2.yaml").toString();
+        assertEquals(result3, Differ.generate(filepath3, filepath4, format));
     }
 }

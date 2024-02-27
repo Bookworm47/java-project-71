@@ -13,3 +13,6 @@ Nested Diff
 
 Plain diff
 [![asciicast](https://asciinema.org/a/50qHWosJVUGkeNRpNlSaJdGaj.svg)](https://asciinema.org/a/50qHWosJVUGkeNRpNlSaJdGaj)
+
+JSON diff
+[![asciicast](https://asciinema.org/a/0ner9BZjAWXOxIwqshOtbLajg.svg)](https://asciinema.org/a/0ner9BZjAWXOxIwqshOtbLajg)
