@@ -11,7 +11,7 @@ public class Json {
 
     public static String jsonFormatter(List<Map<String, Object>> differ) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String result = objectMapper.writeValueAsString(differ);
-        return result;
+        String resultJsonFormatter = objectMapper.writeValueAsString(differ);
+        return resultJsonFormatter;
     }
 }
