@@ -13,4 +13,12 @@ public class Differ {
         result = Formatter.chooseFormat(resultDiffList, formatName);
         return result;
     }
+
+    public static String generate(String firstFilePath, String secondFilePath) throws IOException {
+        String result;
+        String formatName = "stylish";
+        List<Map<String, Object>> resultDiffList = DifferFinder.findDifference(firstFilePath, secondFilePath);
+        result = Formatter.chooseFormat(resultDiffList, formatName);
+        return result;
+    }
 }
