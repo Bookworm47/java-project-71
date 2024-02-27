@@ -33,6 +33,8 @@ public class Plain {
                     break;
             }
         }
+        jsonDifferPlainResult.delete(jsonDifferPlainResult.lastIndexOf("\n"),
+                jsonDifferPlainResult.length());
         result = jsonDifferPlainResult.toString();
         return result;
     }
@@ -43,7 +45,7 @@ public class Plain {
             result = null;
         } else if (obj instanceof String) {
             result = String.format("'%s'", obj);
-        } else if (obj instanceof Map) {
+        } else if (obj instanceof Map || obj instanceof List) {
             result = "[complex value]";
         } else {
             result = obj.toString();

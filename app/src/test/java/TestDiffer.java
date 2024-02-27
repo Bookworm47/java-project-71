@@ -67,15 +67,15 @@ public class TestDiffer {
         String filepath4 = getFixturePath("innerFile2.yaml").toString();
         assertEquals(result2, Differ.generate(filepath3, filepath4, format));
     }
-
+    @Test
     void plainTest() throws IOException {
         String format = "plain";
         String filepath1 = getFixturePath("innerFile1.json").toString();
         String filepath2 = getFixturePath("innerFile2.json").toString();
-        assertEquals(result2, Differ.generate(filepath1, filepath2, format));
+        assertEquals(result1, Differ.generate(filepath1, filepath2, format));
 
         String filepath3 = getFixturePath("innerFile1.yaml").toString();
         String filepath4 = getFixturePath("innerFile2.yaml").toString();
-        assertEquals(result2, Differ.generate(filepath3, filepath4, format));
+        assertEquals(result1, Differ.generate(filepath3, filepath4, format));
     }
 }
