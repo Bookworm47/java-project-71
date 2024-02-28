@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class TestDiffer {
-    String result1;
-    String result2;
-    String result3;
+public final class TestDiffer {
+    private String result1;
+    private String result2;
+    private String result3;
     private static Path getFixturePath(String fileName) {
         return Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();
