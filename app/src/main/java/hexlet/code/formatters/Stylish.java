@@ -19,21 +19,21 @@ public class Stylish {
             ChangeStatus diffStatus = (ChangeStatus) diff.get(key);
             switch (Objects.requireNonNull(diffStatus)) {
                 case SAME:
-                    jsonDifferStylishResult.append("   ").append(key).append(": ").
+                    jsonDifferStylishResult.append("    ").append(key).append(": ").
                             append(diff.get(OLDOBJECT)).append("\n");
                     break;
                 case CHANGE:
-                    jsonDifferStylishResult.append(" - ").append(key).append(": ").
+                    jsonDifferStylishResult.append("  - ").append(key).append(": ").
                             append(diff.get(OLDOBJECT)).append("\n");
-                    jsonDifferStylishResult.append(" + ").append(key).append(": ").
+                    jsonDifferStylishResult.append("  + ").append(key).append(": ").
                             append(diff.get(NEWOBJECT)).append("\n");
                     break;
                 case ADD:
-                    jsonDifferStylishResult.append(" + ").append(key).append(": ").
+                    jsonDifferStylishResult.append("  + ").append(key).append(": ").
                             append(diff.get(NEWOBJECT)).append("\n");
                     break;
                 case DELETE:
-                    jsonDifferStylishResult.append(" - ").append(key).append(": ").
+                    jsonDifferStylishResult.append("  - ").append(key).append(": ").
                             append(diff.get(OLDOBJECT)).append("\n");
                     break;
                 default:
