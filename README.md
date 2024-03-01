@@ -1,3 +1,13 @@
+## Вычислитель отличий
+Вычислитель отличий – программа, определяющая разницу между двумя структурами данных.
+В качестве параметров передается путь до файла, содержащий данные в формате JSON или YML, и желаемый формат вывода результата отличий (по-умолчанию результат выводится в формате stylish). 
+
+Возможности утилиты:
+
+ - Поддержка разных входных форматов: yaml и json
+
+ - Генерация отчета в виде plain text, stylish и json
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Bookworm47/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Bookworm47/java-project-71/actions)
 <a href="https://codeclimate.com/github/Bookworm47/java-project-71/maintainability"><img src="https://api.codeclimate.com/v1/badges/94817d62cc2a812d9bfe/maintainability" /></a>
