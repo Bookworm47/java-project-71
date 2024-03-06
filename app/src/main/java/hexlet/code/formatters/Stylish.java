@@ -15,8 +15,8 @@ public class Stylish {
         String result;
         jsonDifferStylishResult.append("{" + "\n");
         for (Map<String, Object> diff : differ) {
-            String key = diff.keySet().iterator().next();
-            ChangeStatus diffStatus = (ChangeStatus) diff.get(key);
+            String key = diff.get("key").toString();
+            ChangeStatus diffStatus = (ChangeStatus) diff.get("type");
             switch (Objects.requireNonNull(diffStatus)) {
                 case SAME:
                     jsonDifferStylishResult.append("    ").append(key).append(": ").

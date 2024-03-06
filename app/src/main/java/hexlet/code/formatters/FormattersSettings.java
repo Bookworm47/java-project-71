@@ -1,6 +1,6 @@
 package hexlet.code.formatters;
 
 public class FormattersSettings {
-    static final String OLDOBJECT = "OldObject";
-    static final String NEWOBJECT = "NewObject";
+    public static final String OLDOBJECT = "OldObject";
+    public static final String NEWOBJECT = "NewObject";
 }

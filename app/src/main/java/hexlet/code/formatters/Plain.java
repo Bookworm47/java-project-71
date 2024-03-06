@@ -14,8 +14,8 @@ public class Plain {
         StringBuilder jsonDifferPlainResult = new StringBuilder();
         String result;
         for (Map<String, Object> diff : differ) {
-            String key = diff.keySet().iterator().next();
-            ChangeStatus diffStatus = (ChangeStatus) diff.get(key);
+            String key = diff.get("key").toString();
+            ChangeStatus diffStatus = (ChangeStatus) diff.get("type");
             switch (diffStatus) {
                 case CHANGE:
                     jsonDifferPlainResult.append(String.format("Property '%s' was updated. From %s to %s\n",
@@ -29,8 +29,9 @@ public class Plain {
                     jsonDifferPlainResult.append(String.format("Property '%s' was removed\n", key));
                     break;
                 case SAME:
-                default:
                     break;
+                default:
+                    throw new IllegalArgumentException("There is no such ChangeStatus");
             }
         }
         jsonDifferPlainResult.delete(jsonDifferPlainResult.lastIndexOf("\n"),

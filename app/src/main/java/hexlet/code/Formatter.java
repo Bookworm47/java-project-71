@@ -20,8 +20,10 @@ public class Formatter {
                 formatResult = Json.jsonFormatter(differ);
                 break;
             case "stylish":
-            default:
                 formatResult = Stylish.stylish(differ);
+                break;
+            default:
+                throw new IllegalArgumentException("There is no such formatter");
         }
         return formatResult;
     }
