@@ -19,34 +19,28 @@ public class DifferFinder {
         Set<String> allKeys = new TreeSet<>(firstFile.keySet());
         allKeys.addAll(secondFile.keySet());
         List<Map<String, Object>> resultList = new ArrayList<>();
-        String keyKey = "key";
         String typeKey = "type";
-
         for (String key : allKeys) {
             Object firstValue = firstFile.get(key);
             Object secondValue = secondFile.get(key);
             Map<String, Object> changeMap = new LinkedHashMap<>();
+            changeMap.put("key", key);
             if (firstFile.containsKey(key) && secondFile.containsKey(key)) {
                 if (firstValue == null && secondValue == null) {
-                    changeMap.put(keyKey, key);
                     changeMap.put(typeKey, ChangeStatus.CHANGE);
                     changeMap.put(OLDOBJECT, firstValue);
                 } else if ((firstValue == null || secondValue == null) || !firstValue.equals(secondValue)) {
-                    changeMap.put(keyKey, key);
                     changeMap.put(typeKey, ChangeStatus.CHANGE);
                     changeMap.put(OLDOBJECT, firstValue);
                     changeMap.put(NEWOBJECT, secondValue);
                 } else {
-                    changeMap.put(keyKey, key);
                     changeMap.put(typeKey, ChangeStatus.SAME);
                     changeMap.put(OLDOBJECT, firstValue);
                 }
             } else if (secondFile.containsKey(key)) {
-                changeMap.put(keyKey, key);
                 changeMap.put(typeKey, ChangeStatus.ADD);
                 changeMap.put(NEWOBJECT, secondValue);
             } else {
-                changeMap.put(keyKey, key);
                 changeMap.put(typeKey, ChangeStatus.DELETE);
                 changeMap.put(OLDOBJECT, firstValue);
             }

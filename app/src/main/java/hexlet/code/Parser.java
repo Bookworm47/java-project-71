@@ -7,16 +7,16 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parser(String file, String type) throws NullPointerException,
+    public static Map<String, Object> parser(String data, String type) throws NullPointerException,
             JsonProcessingException {
         ObjectMapper objectMapper = new YAMLMapper();
 
         if (type.equalsIgnoreCase("json")) {
             objectMapper = new ObjectMapper();
-        } else if (file.equalsIgnoreCase("yaml") || file.equalsIgnoreCase("yml")) {
+        } else if (data.equalsIgnoreCase("yaml") || data.equalsIgnoreCase("yml")) {
             objectMapper = new YAMLMapper();
         }
-        Map<String, Object> parsingResult = objectMapper.readValue(file, Map.class);
+        Map<String, Object> parsingResult = objectMapper.readValue(data, Map.class);
         return parsingResult;
     }
 }
