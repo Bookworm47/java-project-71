@@ -7,9 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.Map;
 
-public class Json {
+public class Json implements FormatterInterface {
 
-    public static String jsonFormatter(List<Map<String, Object>> differ) throws JsonProcessingException {
+    public String format(List<Map<String, Object>> differ) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String resultJsonFormatter = objectMapper.writeValueAsString(differ);
         return resultJsonFormatter;

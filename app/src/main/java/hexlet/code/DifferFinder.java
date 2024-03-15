@@ -26,10 +26,7 @@ public class DifferFinder {
             Map<String, Object> changeMap = new LinkedHashMap<>();
             changeMap.put("key", key);
             if (firstFile.containsKey(key) && secondFile.containsKey(key)) {
-                if (firstValue == null && secondValue == null) {
-                    changeMap.put(typeKey, ChangeStatus.CHANGE);
-                    changeMap.put(OLDOBJECT, firstValue);
-                } else if ((firstValue == null || secondValue == null) || !firstValue.equals(secondValue)) {
+                if ((firstValue == null || secondValue == null) || !firstValue.equals(secondValue)) {
                     changeMap.put(typeKey, ChangeStatus.CHANGE);
                     changeMap.put(OLDOBJECT, firstValue);
                     changeMap.put(NEWOBJECT, secondValue);

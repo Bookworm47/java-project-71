@@ -9,11 +9,11 @@ import java.util.Map;
 public class Parser {
     public static Map<String, Object> parser(String data, String type) throws NullPointerException,
             JsonProcessingException {
-        ObjectMapper objectMapper = new YAMLMapper();
+        ObjectMapper objectMapper;
 
         if (type.equalsIgnoreCase("json")) {
             objectMapper = new ObjectMapper();
-        } else if (data.equalsIgnoreCase("yaml") || data.equalsIgnoreCase("yml")) {
+        } else {
             objectMapper = new YAMLMapper();
         }
         Map<String, Object> parsingResult = objectMapper.readValue(data, Map.class);

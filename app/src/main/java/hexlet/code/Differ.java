@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.formatters.FormatterInterface;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,7 +39,8 @@ public class Differ {
         Map<String, Object> firstFile = Parser.parser(firstData, firstFormat);
         Map<String, Object> secondFile = Parser.parser(secondData, secondFormat);
         List<Map<String, Object>> resultDiffList = DifferFinder.findDifference(firstFile, secondFile);
-        result = Formatter.chooseFormat(resultDiffList, formatName);
+        FormatterInterface format = Formatter.chooseFormat(formatName);
+        result = format.format(resultDiffList);
         return result;
     }
 

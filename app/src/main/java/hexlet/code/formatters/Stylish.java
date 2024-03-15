@@ -9,8 +9,8 @@ import java.util.Objects;
 import static hexlet.code.formatters.FormattersSettings.NEWOBJECT;
 import static hexlet.code.formatters.FormattersSettings.OLDOBJECT;
 
-public class Stylish {
-    public static String stylish(List<Map<String, Object>> differ) {
+public class Stylish implements FormatterInterface {
+    public String format(List<Map<String, Object>> differ) {
         StringBuilder jsonDifferStylishResult = new StringBuilder();
         String result;
         jsonDifferStylishResult.append("{" + "\n");

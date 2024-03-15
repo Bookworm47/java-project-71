@@ -8,11 +8,10 @@ import java.util.Map;
 import static hexlet.code.formatters.FormattersSettings.NEWOBJECT;
 import static hexlet.code.formatters.FormattersSettings.OLDOBJECT;
 
-public class Plain {
+public class Plain implements FormatterInterface {
 
-    public static String plain(List<Map<String, Object>> differ) {
+    public String format(List<Map<String, Object>> differ) {
         StringBuilder jsonDifferPlainResult = new StringBuilder();
-        String result;
         for (Map<String, Object> diff : differ) {
             String key = diff.get("key").toString();
             ChangeStatus diffStatus = (ChangeStatus) diff.get("type");
@@ -36,8 +35,7 @@ public class Plain {
         }
         jsonDifferPlainResult.delete(jsonDifferPlainResult.lastIndexOf("\n"),
                 jsonDifferPlainResult.length());
-        result = jsonDifferPlainResult.toString();
-        return result;
+        return jsonDifferPlainResult.toString();
     }
 
     private static String complexValueCheck(Object obj) {
