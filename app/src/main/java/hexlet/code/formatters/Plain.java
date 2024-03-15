@@ -10,7 +10,7 @@ import static hexlet.code.formatters.FormattersSettings.OLDOBJECT;
 
 public class Plain implements FormatterInterface {
 
-    public String format(List<Map<String, Object>> differ) {
+    public final String format(List<Map<String, Object>> differ) {
         StringBuilder jsonDifferPlainResult = new StringBuilder();
         for (Map<String, Object> diff : differ) {
             String key = diff.get("key").toString();

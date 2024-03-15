@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Json implements FormatterInterface {
 
-    public String format(List<Map<String, Object>> differ) throws JsonProcessingException {
+    public final String format(List<Map<String, Object>> differ) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String resultJsonFormatter = objectMapper.writeValueAsString(differ);
         return resultJsonFormatter;
